@@ -4,9 +4,9 @@ class FragmentCli < Formula
   desc "The FRAGMENT CLI allows you to interact with the FRAGMENT API and develop your chart of accounts"
   homepage "https://fragment.dev"
   url "https://fragment-cli.s3.amazonaws.com/fragment-cli.tar.gz"
-  version "1.0.0"
-  sha256 "c9100abdcc5486287f2ccec790bb083d21ae30ca446fcae435cac61a3344ae19"
-  license "None"
+  version "2022.11.9"
+  sha256 "0335dc5a17d13de6ee03b4354ba5b9d3c8199ceb2aa032511ed052a8bf6db396"
+  license "MIT"
   depends_on "node@16"
 
   def install

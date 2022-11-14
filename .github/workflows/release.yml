@@ -1,0 +1,19 @@
+name: 'Homebrew Release'
+on:
+  workflow_dispatch:
+
+  # Allows external webhook trigger
+  repository_dispatch:
+    types:
+      - webhook
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: test
+        run: 'echo "hi"'
+        shell: bash

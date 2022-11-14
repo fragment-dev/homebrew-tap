@@ -34,8 +34,11 @@ program
       throw new Error('Invalid type');
     },
   })
+  .option('--dry-run', 'Flag to specify whether or not to push to Github', {
+    validator: program.BOOLEAN,
+  })
   .action(({ logger, options }) => {
-    const { stage, shasum, cliVersion } = options;
+    const { stage, shasum, cliVersion, dryRun } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli@next' : 'fragment-cli';
     const url =
@@ -70,6 +73,11 @@ program
     });
     logger.info(updatedFormula);
     fs.writeFileSync(outputPath, updatedFormula);
+
+    if (dryRun) {
+      logger.info('Dry run mode specified, not pushing to github');
+      return;
+    }
   });
 
 program.run();

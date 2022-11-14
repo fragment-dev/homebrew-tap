@@ -20,6 +20,3 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-      - name: test
-        run: 'echo "hi"'
-        shell: bash

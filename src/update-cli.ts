@@ -129,7 +129,7 @@ program
   .action(async ({ logger, options }) => {
     const { stage, shasum, cliVersion, dryRun } = options;
     assert(cliVersion && typeof cliVersion === 'string');
-    const packageName = stage === 'dev' ? 'fragment-cli@next' : 'fragment-cli';
+    const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
     const url =
       stage === 'prod'
         ? 'https://fragment-cli.s3.amazonaws.com/fragment-cli.tar.gz'
@@ -176,7 +176,7 @@ program
     const { commitSha, treeSha } = await getCurrentCommit(octo);
     const filePaths = [
       path.resolve('./Formula/fragment-cli.rb'),
-      path.resolve('./Formula/fragment-cli@next.rb'),
+      path.resolve('./Formula/fragment-cli-beta.rb'),
     ];
     const fileBlobs = await Promise.all(filePaths.map(createBlobForFile(octo)));
     const pathsForBlobs = filePaths.map((fullPath) =>

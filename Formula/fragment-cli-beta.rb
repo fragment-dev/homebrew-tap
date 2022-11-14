@@ -1,6 +1,6 @@
 require "language/node"
 
-class FragmentCliATNext < Formula
+class FragmentCliBeta < Formula
   desc "Beta versin of the FRAGMENT CLI"
   homepage "https://fragment.dev"
   url "https://fragment-cli-dev.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz"

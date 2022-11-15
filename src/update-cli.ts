@@ -104,6 +104,10 @@ program
     required: true,
     validator: program.STRING,
   })
+  .option('--version-id <versionId>', 'Version ID from S3', {
+    required: true,
+    validator: program.STRING,
+  })
   .option('--cli-version <version>', 'CLI Version', {
     required: true,
     validator: (val) => {
@@ -127,13 +131,10 @@ program
     validator: program.BOOLEAN,
   })
   .action(async ({ logger, options }) => {
-    const { stage, shasum, cliVersion, dryRun } = options;
+    const { stage, shasum, cliVersion, dryRun, versionId } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
-    const url =
-      stage === 'prod'
-        ? 'https://fragment-cli-prod.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz'
-        : 'https://fragment-cli-dev.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz';
+    const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz?versionId=${versionId}`;
 
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
@@ -195,7 +196,7 @@ program
       commitSha
     );
     logger.info(`Updating main branch to ${newCommit.sha}`);
-    // await setBranchToCommit(octo, 'main', newCommit.sha);
+    await setBranchToCommit(octo, 'main', newCommit.sha);
   });
 
 program.run();

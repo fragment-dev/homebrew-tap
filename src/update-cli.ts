@@ -134,9 +134,7 @@ program
     const { stage, shasum, cliVersion, dryRun, versionId } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
-    logger.info(versionId);
     const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz?versionId=${versionId}`;
-
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
     execSync(`curl -L ${url} --output graphite-cli.zip`);

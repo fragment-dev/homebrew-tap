@@ -3,7 +3,7 @@ require "language/node"
 class FragmentCli < Formula
   desc "The FRAGMENT CLI allows you to interact with the FRAGMENT API and develop your chart of accounts"
   homepage "https://fragment.dev"
-  url "{{url}}"
+  url "{{{url}}}"
   version "{{version}}"
   sha256 "{{shasum}}"
   license "MIT"

@@ -3,7 +3,7 @@ require "language/node"
 class FragmentCli@next < Formula
   desc "Beta versin of the FRAGMENT CLI"
   homepage "https://fragment.dev"
-  url "{{url}}"
+  url "{{{url}}}"
   version "{{version}}"
   sha256 "{{shasum}}"
   license "MIT"

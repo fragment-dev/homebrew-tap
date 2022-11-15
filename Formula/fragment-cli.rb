@@ -3,9 +3,9 @@ require "language/node"
 class FragmentCli < Formula
   desc "The FRAGMENT CLI allows you to interact with the FRAGMENT API and develop your chart of accounts"
   homepage "https://fragment.dev"
-  url "https://fragment-cli-prod.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz?versionId=fWSj3xyhnb4VrfBufb38t3qSG5ByumYt"
+  url "https://fragment-cli-prod.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz?versionId=lmiNG1qtug_tBag93RUCytpPwr7hshY7"
   version "2022.11.15"
-  sha256 "e45447f14512d5af96c1f1400fe79e3ca4cc62e65a5b4c14df2d6062d6d70785"
+  sha256 "ce70629a2217431086fd1506c79a2bf277e187bb0fcf1579dc1862f586a4dbf9"
   license "MIT"
   depends_on "node@16"
 

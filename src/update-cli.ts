@@ -132,7 +132,7 @@ program
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
     const url =
       stage === 'prod'
-        ? 'https://fragment-cli.s3.amazonaws.com/fragment-cli.tar.gz'
+        ? 'https://fragment-cli-prod.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz'
         : 'https://fragment-cli-dev.s3.us-west-2.amazonaws.com/fragment-cli.tar.gz';
 
     const cwd = process.cwd();

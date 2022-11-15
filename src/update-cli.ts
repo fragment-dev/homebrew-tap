@@ -195,7 +195,7 @@ program
       commitSha
     );
     logger.info(`Updating main branch to ${newCommit.sha}`);
-    await setBranchToCommit(octo, 'main', newCommit.sha);
+    // await setBranchToCommit(octo, 'main', newCommit.sha);
   });
 
 program.run();

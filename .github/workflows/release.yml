@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 0y
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -36,3 +36,9 @@ jobs:
         run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage }} --shasum ${{ github.event.client_payload.shasum }} --cli-version ${{ github.event.client_payload.version }}
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push
+        run: |
+          git config --global user.name 'FRAGMENT'
+          git config --global user.email 'jerry@fragment.dev'
+          git commit -am "Bump CLI"
+          git push

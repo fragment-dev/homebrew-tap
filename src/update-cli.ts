@@ -134,7 +134,7 @@ program
     const { stage, shasum, cliVersion, dryRun } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
-    const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli-${cliVersion}.tar.gz`;
+    const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli-v${cliVersion}.tar.gz`;
     logger.info(url);
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);

@@ -1,7 +1,7 @@
 require "language/node"
 
-class FragmentCli@next < Formula
-  desc "Beta versin of the FRAGMENT CLI"
+class FragmentCliBeta < Formula
+  desc "Beta version of the FRAGMENT CLI"
   homepage "https://fragment.dev"
   url "{{{url}}}"
   version "{{version}}"

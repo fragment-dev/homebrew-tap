@@ -135,11 +135,12 @@ program
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
     const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli-${cliVersion}.tar.gz`;
+    logger.info(url);
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
-    execSync(`curl -L ${url} --output graphite-cli.zip`);
+    execSync(`curl -L ${url} --output fragment-cli.zip`);
 
-    const verifiedShasum = execSync('shasum -a 256 graphite-cli.zip')
+    const verifiedShasum = execSync('shasum -a 256 fragment-cli.zip')
       .toString()
       .trim()
       .split(' ')[0];

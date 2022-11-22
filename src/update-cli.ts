@@ -135,12 +135,13 @@ program
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
     const url = `https://fragment-cli-${stage}.s3.us-west-2.amazonaws.com/fragment-cli-v${cliVersion}.tar.gz`;
-    logger.info(url);
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
-    execSync(`curl -L ${url} --output fragment-cli.zip`);
+    const curlCommand = `curl --fail -L ${url} --output fragment-cli.tar.gz`;
+    logger.info(curlCommand);
+    execSync(curlCommand);
 
-    const verifiedShasum = execSync('shasum -a 256 fragment-cli.zip')
+    const verifiedShasum = execSync('shasum -a 256 fragment-cli.tar.gz')
       .toString()
       .trim()
       .split(' ')[0];
@@ -161,6 +162,20 @@ program
       shasum,
       version: cliVersion,
     });
+    const packageJsonPath = path.resolve('package.json');
+    const packageJsonContents = JSON.parse(
+      fs.readFileSync(packageJsonPath).toString()
+    );
+    packageJsonContents.versions = {
+      ...packageJsonContents.versions,
+      [String(stage)]: cliVersion,
+    };
+    console.log(packageJsonContents);
+    fs.writeFileSync(
+      packageJsonPath,
+      JSON.stringify(packageJsonContents, null, 2)
+    );
+
     logger.info(updatedFormula);
     fs.writeFileSync(outputPath, updatedFormula);
 
@@ -176,6 +191,7 @@ program
     });
     const { commitSha, treeSha } = await getCurrentCommit(octo);
     const filePaths = [
+      path.resolve('package.json'),
       path.resolve('./Formula/fragment-cli.rb'),
       path.resolve('./Formula/fragment-cli-beta.rb'),
     ];

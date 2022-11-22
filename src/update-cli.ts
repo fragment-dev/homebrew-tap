@@ -104,28 +104,9 @@ program
     required: true,
     validator: program.STRING,
   })
-  .option('--version-id <versionId>', 'Version ID from S3', {
-    required: true,
-    validator: program.STRING,
-  })
   .option('--cli-version <version>', 'CLI Version', {
     required: true,
-    validator: (val) => {
-      if (typeof val === 'string') {
-        if (!val.startsWith('v')) {
-          throw new Error(
-            `Prod release attemped with invalid release version: ${val}`
-          );
-        }
-        // strip 'v' prefix from GH release tag
-        return val.substring(1);
-      }
-      if (typeof val === 'number') {
-        // just some dummy
-        return `1.${val}.0`;
-      }
-      throw new Error('Invalid type');
-    },
+    validator: program.STRING,
   })
   .option('--dry-run', 'Flag to specify whether or not to push to Github', {
     validator: program.BOOLEAN,

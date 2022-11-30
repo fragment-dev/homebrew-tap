@@ -115,7 +115,7 @@ program
     const { stage, shasum, cliVersion, dryRun } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
-    const url = `https://fragment-cli-${stage}.s3.amazonaws.com/fragment-cli-v${cliVersion}.tar.gz`;
+    const url = `https://${stage}-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v${cliVersion}.tar.gz`;
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
     const curlCommand = `curl --fail -L ${url} --output fragment-cli.tar.gz`;

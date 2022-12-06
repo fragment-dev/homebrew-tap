@@ -3,9 +3,9 @@ require "language/node"
 class FragmentCliBeta < Formula
   desc "Beta version of the FRAGMENT CLI"
   homepage "https://fragment.dev"
-  url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v1467.0.0.tar.gz"
-  version "1467.0.0"
-  sha256 "b7195835b62330bc8c37e1430b193fc986243fd8f05a8fe7843019dd4328e8c1"
+  url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v1488.0.0.tar.gz"
+  version "1488.0.0"
+  sha256 "f02fec7fe6fc12451cf9f6c8099b15af03885fbe629c4edda8efae018476affc"
   license "MIT"
   depends_on "node@16"
 

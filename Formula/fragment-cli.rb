@@ -11,7 +11,7 @@ class FragmentCli < Formula
 
   def install
     system "npm", "install"
-    system "npm", "run", "build"
+    system "npm", "run", "build", "prod", "2022.12.1"
     bin.install Dir["dist/*"]
     man.mkpath
   end

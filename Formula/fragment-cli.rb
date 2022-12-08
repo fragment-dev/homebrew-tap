@@ -3,15 +3,15 @@ require "language/node"
 class FragmentCli < Formula
   desc "The FRAGMENT CLI allows you to interact with the FRAGMENT API and develop your chart of accounts"
   homepage "https://fragment.dev"
-  url "https://prod-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v2022.12.1.tar.gz"
-  version "2022.12.1"
-  sha256 "80b011e1fc448d0a11dc94fd8a686778295aec037bea1f6d102ab14eaaf9f5e7"
+  url "https://prod-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v2022.12.7.tar.gz"
+  version "2022.12.7"
+  sha256 "477b531854e185fc6cd91cd50c0045dc76126a0644ef23dc8584dbb3b1618f2d"
   license "MIT"
   depends_on "node@16"
 
   def install
     system "npm", "install"
-    system "npm", "run", "build", "prod", "2022.12.1"
+    system "npm", "run", "build", "prod", "2022.12.7"
     bin.install Dir["dist/*"]
     man.mkpath
   end

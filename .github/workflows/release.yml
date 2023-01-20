@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Update CLI
-        run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage }} --shasum ${{ github.event.client_payload.shasum }} --cli-version ${{ github.event.client_payload.version }}
+        run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage }} --shasums ${{ github.event.client_payload.shasums }} --cli-version ${{ github.event.client_payload.version }}
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request

@@ -113,20 +113,15 @@ program
       logger.info(command);
       return command;
     };
-    execSync(curl('darwin-x64'));
-    execSync(curl('darwin-arm64'));
-
     const getShasum = (arch: Architecture) =>
       execSync(`shasum -a 256 fragment-cli-${arch}.tar.gz`)
         .toString()
         .trim()
         .split(' ')[0];
 
-    const verifiedShasum = execSync('shasum -a 256 fragment-cli.tar.gz')
-      .toString()
-      .trim()
-      .split(' ')[0];
-    logger.info(`Shasum from package: ${verifiedShasum}.`);
+    execSync(curl('darwin-x64'));
+    execSync(curl('darwin-arm64'));
+
     process.chdir(cwd);
 
     const outputPath = path.resolve(`./Formula/${packageName}.rb`);

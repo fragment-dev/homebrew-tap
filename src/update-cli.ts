@@ -113,23 +113,28 @@ program
       logger.info(command);
       return command;
     };
-    const getShasum = (arch: Architecture) =>
-      execSync(`shasum -a 256 fragment-cli-${arch}.tar.gz`)
+    const getShasum = (arch: Architecture) => {
+      const shasum = execSync(`shasum -a 256 fragment-cli-${arch}.tar.gz`)
         .toString()
         .trim()
         .split(' ')[0];
+      logger.info(shasum || '');
+      return shasum;
+    };
 
     execSync(curl('darwin-x64'));
     execSync(curl('darwin-arm64'));
     logger.info('Pulled tarballs from S3');
+    const darwinX64Shasum = getShasum('darwin-x64');
+    const darwinArm64Shasum = getShasum('darwin-arm64');
 
     process.chdir(cwd);
 
     const outputPath = path.resolve(`./Formula/${packageName}.rb`);
     const templatePath = path.resolve(`./templates/${packageName}.rb`);
     const updatedFormula = compile(fs.readFileSync(templatePath).toString())({
-      darwinX64Shasum: getShasum('darwin-x64'),
-      darwinArm64Shasum: getShasum('darwin-arm64'),
+      darwinX64Shasum,
+      darwinArm64Shasum,
       darwinX64Url: getUrl('darwin-arm64'),
       darwinArm64Url: getUrl('darwin-arm64'),
       version: cliVersion,

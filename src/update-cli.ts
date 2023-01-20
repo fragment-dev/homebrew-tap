@@ -121,6 +121,7 @@ program
 
     execSync(curl('darwin-x64'));
     execSync(curl('darwin-arm64'));
+    logger.info('Pulled tarballs from S3');
 
     process.chdir(cwd);
 
@@ -129,8 +130,8 @@ program
     const updatedFormula = compile(fs.readFileSync(templatePath).toString())({
       darwinX64Shasum: getShasum('darwin-x64'),
       darwinArm64Shasum: getShasum('darwin-arm64'),
-      darwinX64Url: getShasum('darwin-arm64'),
-      darwinArm64Url: getShasum('darwin-arm64'),
+      darwinX64Url: getUrl('darwin-arm64'),
+      darwinArm64Url: getUrl('darwin-arm64'),
       version: cliVersion,
     });
 

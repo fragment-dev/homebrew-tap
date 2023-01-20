@@ -3,20 +3,25 @@ require "language/node"
 class FragmentCliBeta < Formula
   desc "Beta version of the FRAGMENT CLI"
   homepage "https://fragment.dev"
-  url "{{{url}}}"
+  on_macos do
+    url "{{{darwinX64Url}}}"
+    sha256 "{{darwinX64Shasum}}"
+    on_arm do
+      url "{{{darwinArm64Url}}}"
+      sha256 "{{darwinArm64Shasum}}"
+    end
+  end
   version "{{version}}"
-  sha256 "{{shasum}}"
   license "MIT"
   depends_on "node@16"
 
   def install
-    system "npm", "install"
-    system "npm", "run", "build", "dev", "{{version}}"
-    bin.install Dir["dist/*"]
-    man.mkpath
+    inreplace "bin/fragment", /^CLIENT_HOME=/, "export FRAGMENT_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
+    libexec.install Dir["*"]
+    bin.install_symlink libexec/"bin/fragment"
   end
 
   test do
-    raise "Test not implemented."
+    system bin/"fragment", "version"
   end
 end

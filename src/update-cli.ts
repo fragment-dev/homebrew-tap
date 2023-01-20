@@ -7,6 +7,8 @@ import path from 'path';
 import { compile } from 'handlebars';
 import { Octokit } from 'octokit';
 
+type Architecture = 'darwin-x64' | 'darwin-arm64';
+
 const getCurrentCommit = async (octo: Octokit) => {
   const { data: refData } = await octo.rest.git.getRef({
     owner: 'fragment-dev',
@@ -67,18 +69,6 @@ const createNewTree = async (
   return data;
 };
 
-const setBranchToCommit = async (
-  octo: Octokit,
-  branch: string,
-  commitSha: string
-) =>
-  octo.rest.git.updateRef({
-    owner: 'fragment-dev',
-    repo: 'homebrew-tap',
-    ref: `heads/${branch}`,
-    sha: commitSha,
-  });
-
 const createNewCommit = async (
   octo: Octokit,
   message: string,
@@ -100,10 +90,6 @@ program
     required: true,
     validator: ['dev', 'prod'],
   })
-  .option('--shasum <shasum>', 'Shasum of the tarball', {
-    required: true,
-    validator: program.STRING,
-  })
   .option('--cli-version <version>', 'CLI Version', {
     required: true,
     validator: program.STRING,
@@ -112,37 +98,47 @@ program
     validator: program.BOOLEAN,
   })
   .action(async ({ logger, options }) => {
-    const { stage, shasum, cliVersion, dryRun } = options;
+    const { stage, cliVersion, dryRun } = options;
     assert(cliVersion && typeof cliVersion === 'string');
     const packageName = stage === 'dev' ? 'fragment-cli-beta' : 'fragment-cli';
-    const url = `https://${stage}-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v${cliVersion}.tar.gz`;
+
     const cwd = process.cwd();
     process.chdir(tmp.dirSync({ keep: false }).name);
-    const curlCommand = `curl --fail -L ${url} --output fragment-cli.tar.gz`;
-    logger.info(curlCommand);
-    execSync(curlCommand);
+    const getUrl = (architecture: Architecture) =>
+      `https://${stage}-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v${cliVersion}-${architecture}.tar.gz`;
+    const curl = (architecture: Architecture) => {
+      const command = `curl --fail -L ${getUrl(
+        architecture
+      )} --output fragment-cli-${architecture}.tar.gz`;
+      logger.info(command);
+      return command;
+    };
+    execSync(curl('darwin-x64'));
+    execSync(curl('darwin-arm64'));
+
+    const getShasum = (arch: Architecture) =>
+      execSync(`shasum -a 256 fragment-cli-${arch}.tar.gz`)
+        .toString()
+        .trim()
+        .split(' ')[0];
 
     const verifiedShasum = execSync('shasum -a 256 fragment-cli.tar.gz')
       .toString()
       .trim()
       .split(' ')[0];
-    logger.info(
-      `Shasum from package: ${verifiedShasum}. Shasum from webhook: ${shasum}`
-    );
-    if (verifiedShasum !== shasum) {
-      throw new Error(
-        `Mismatch in shasums. Shasum from package: ${verifiedShasum}. Shasum from webhook: ${shasum}`
-      );
-    }
+    logger.info(`Shasum from package: ${verifiedShasum}.`);
     process.chdir(cwd);
 
     const outputPath = path.resolve(`./Formula/${packageName}.rb`);
     const templatePath = path.resolve(`./templates/${packageName}.rb`);
     const updatedFormula = compile(fs.readFileSync(templatePath).toString())({
-      url,
-      shasum,
+      darwinX64Shasum: getShasum('darwin-x64'),
+      darwinArm64Shasum: getShasum('darwin-arm64'),
+      darwinX64Url: getShasum('darwin-arm64'),
+      darwinArm64Url: getShasum('darwin-arm64'),
       version: cliVersion,
     });
+
     const packageJsonPath = path.resolve('package.json');
     const packageJsonContents = JSON.parse(
       fs.readFileSync(packageJsonPath).toString()

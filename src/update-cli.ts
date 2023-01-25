@@ -148,10 +148,7 @@ program
     const packageJsonContents = JSON.parse(
       fs.readFileSync(packageJsonPath).toString()
     );
-    packageJsonContents.versions = {
-      ...packageJsonContents.versions,
-      [String(stage)]: cliVersion,
-    };
+    packageJsonContents[String(stage)] = cliVersion;
     console.log(packageJsonContents);
     fs.writeFileSync(
       packageJsonPath,

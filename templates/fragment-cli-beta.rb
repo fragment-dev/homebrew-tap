@@ -11,6 +11,10 @@ class FragmentCliBeta < Formula
       sha256 "{{darwinArm64Shasum}}"
     end
   end
+  on_linux do
+    url "{{{linuxX64Url}}}"
+    sha256 "{{linuxX64Shasum}}"
+  end
   version "{{version}}"
   license "MIT"
   depends_on "node@16"

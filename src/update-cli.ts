@@ -7,7 +7,7 @@ import path from 'path';
 import { compile } from 'handlebars';
 import { Octokit } from 'octokit';
 
-type Architecture = 'darwin-x64' | 'darwin-arm64';
+type Architecture = 'darwin-x64' | 'darwin-arm64' | 'linux-x64';
 
 const getCurrentCommit = async (octo: Octokit) => {
   const { data: refData } = await octo.rest.git.getRef({
@@ -124,8 +124,10 @@ program
 
     execSync(curl('darwin-x64'));
     execSync(curl('darwin-arm64'));
+    execSync(curl('linux-x64'));
     logger.info('Pulled tarballs from S3');
     const darwinX64Shasum = getShasum('darwin-x64');
+    const linuxX64Shasum = getShasum('linux-x64');
     const darwinArm64Shasum = getShasum('darwin-arm64');
 
     process.chdir(cwd);
@@ -134,8 +136,10 @@ program
     const templatePath = path.resolve(`./templates/${packageName}.rb`);
     const updatedFormula = compile(fs.readFileSync(templatePath).toString())({
       darwinX64Shasum,
+      linuxX64Shasum,
       darwinArm64Shasum,
       darwinX64Url: getUrl('darwin-arm64'),
+      linuxX64Url: getUrl('darwin-arm64'),
       darwinArm64Url: getUrl('darwin-arm64'),
       version: cliVersion,
     });

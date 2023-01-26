@@ -138,8 +138,8 @@ program
       darwinX64Shasum,
       linuxX64Shasum,
       darwinArm64Shasum,
-      darwinX64Url: getUrl('darwin-arm64'),
-      linuxX64Url: getUrl('darwin-arm64'),
+      darwinX64Url: getUrl('darwin-x64'),
+      linuxX64Url: getUrl('linux-x64'),
       darwinArm64Url: getUrl('darwin-arm64'),
       version: cliVersion,
     });

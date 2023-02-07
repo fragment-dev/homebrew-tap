@@ -61,25 +61,25 @@ jobs:
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os.host}} ${{ matrix.os.architecture }} ${{ matrix.os.name }}
         if: ${{ github.event.client_payload.stage == 'dev' }}
         uses: cross-platform-actions/action@v0.10.0
-          with:
-            operating_system: ${{ matrix.os.name }}
-            architecture: ${{ matrix.os.architecture }}
-            version: ${{ matrix.os.version }}
-            run: |
-              brew install --build-from-source ./Formula/fragment-cli-beta.rb
-              echo "Fragment CLI installed"
-              fragment --version
+        with:
+          operating_system: ${{ matrix.os.name }}
+          architecture: ${{ matrix.os.architecture }}
+          version: ${{ matrix.os.version }}
+          run: |
+            brew install --build-from-source ./Formula/fragment-cli-beta.rb
+            echo "Fragment CLI installed"
+            fragment --version
       - name: Brew Install Fragment CLI Prod ${{ matrix.os.host}} ${{ matrix.os.architecture }} ${{ matrix.os.name }}
         if: ${{ github.event.client_payload.stage == 'prod' }}
         uses: cross-platform-actions/action@v0.10.0
-          with:
-            operating_system: ${{ matrix.os.name }}
-            architecture: ${{ matrix.os.architecture }}
-            version: ${{ matrix.os.version }}
-            run: |
-              brew install --build-from-source ./Formula/fragment-cli.rb
-              echo "Fragment CLI installed"
-              fragment --version
+        with:
+          operating_system: ${{ matrix.os.name }}
+          architecture: ${{ matrix.os.architecture }}
+          version: ${{ matrix.os.version }}
+          run: |
+            brew install --build-from-source ./Formula/fragment-cli.rb
+            echo "Fragment CLI installed"
+            fragment --version
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

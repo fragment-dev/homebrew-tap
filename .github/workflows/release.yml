@@ -42,10 +42,14 @@ jobs:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Brew Install Fragment CLI Beta
         if: ${{ github.event.client_payload.stage == 'dev' }}
-        run: brew install --build-from-source ./Formula/fragment-cli-beta.rb
+        run: |
+          brew install --build-from-source ./Formula/fragment-cli-beta.rb
+          fragment --version
       - name: Brew Install Fragment CLI Prod
         if: ${{ github.event.client_payload.stage == 'prod' }}
-        run: brew install --build-from-source ./Formula/fragment-cli.rb
+        run: |
+          brew install --build-from-source ./Formula/fragment-cli.rb
+          fragment --version
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

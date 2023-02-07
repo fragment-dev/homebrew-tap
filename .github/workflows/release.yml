@@ -59,6 +59,9 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        # This is just so it doesn't try to push twice. The alternative is to create another workflow which will
+        # depend on the brew install, but then we have to locally update the homebrew formulae again, which seems kind of wasteful.
+        if: ${{ matrix.os == 'ubuntu-latest'}}
         with:
           token: ${{ steps.generate-token.outputs.token }}
           commit-message: Update FRAGMENT CLI in stage ${{ github.event.client_payload.stage }} to version ${{ github.event.client_payload.version }}

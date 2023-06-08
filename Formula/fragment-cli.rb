@@ -5,15 +5,15 @@ class FragmentCli < Formula
   homepage "https://fragment.dev"
   on_macos do
     url "https://prod-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v2023.6.7-darwin-x64.tar.gz"
-    sha256 "d755489392d9c11f42872ccf53326aca899bb0c5e867d1e78ff552f7bbc6b7d1"
+    sha256 "df7322051b92d3e8a2b494f195b044f4a9886b99d6bf8550859514313db010c5"
     on_arm do
       url "https://prod-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v2023.6.7-darwin-arm64.tar.gz"
-      sha256 "b8ab90c55bf7f349156a7005584bb3b6abe2aad4624e8fef3e33046d21a356bc"
+      sha256 "abe8b5976f2a8ff9eea1b0f4d7410ccc70aca09333cbcdebfda16a5474da710c"
     end
   end
   on_linux do
     url "https://prod-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v2023.6.7-linux-x64.tar.gz"
-    sha256 "c98f0d06cc37e50a2f2ecdd865c0c83f42bea9a81eaea3e9bc0ac922c0e47e8c"
+    sha256 "7b4cfa62813f3f744efc4a9136b48c8194460869f954425135614810456ca552"
   end
   version "2023.6.7"
   license "MIT"

@@ -17,7 +17,7 @@ class FragmentCliBeta < Formula
   end
   version "3955.3.0"
   license "MIT"
-  depends_on "node@16"
+  depends_on "node@18"
 
   def install
     inreplace "bin/fragment", /^CLIENT_HOME=/, "export FRAGMENT_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="

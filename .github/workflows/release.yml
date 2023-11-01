@@ -50,14 +50,14 @@ jobs:
           brew install --build-from-source ./Formula/fragment-cli-beta.rb
           echo "Fragment CLI installed"
           fragment --version
-          fragment init
+          fragment init -f ${{ github.run_id }}-dev.jsonc
       - name: Brew Install Fragment CLI Prod on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'prod' }}
         run: |
           brew install --build-from-source ./Formula/fragment-cli.rb
           echo "Fragment CLI installed"
           fragment --version
-          fragment init
+          fragment init -f ${{ github.run_id }}-prod.jsonc
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

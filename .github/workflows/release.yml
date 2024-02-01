@@ -62,7 +62,6 @@ jobs:
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-prod.jsonc
-          rm ${{ github.run_id }}-prod.jsonc
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

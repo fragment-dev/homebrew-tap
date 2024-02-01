@@ -54,7 +54,6 @@ jobs:
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-dev.jsonc
-          rm ${{ github.run_id }}-dev.jsonc
       - name: Brew Install Fragment CLI Prod on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'prod' }}
         run: |

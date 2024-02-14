@@ -1,7 +1,7 @@
 {
   "name": "homebrew-tap",
   "version": "1.0.0",
-  "dev": "4553.0.0",
+  "dev": "4555.0.0",
   "prod": "2024.2.12",
   "description": "Automated homebrew releases",
   "license": "MIT",

@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@9f4194aa2de409d31152bf88fdc4638ee9e6584f
+        uses: Homebrew/actions/setup-homebrew@master
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
@@ -50,16 +50,14 @@ jobs:
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'dev' }}
         run: |
-          ls
-          ls Formula
-          brew install --build-from-source ./Formula/fragment-cli-beta.rb
+          brew install --build-from-source Formula/fragment-cli-beta.rb
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-dev.jsonc
       - name: Brew Install Fragment CLI Prod on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'prod' }}
         run: |
-          brew install --build-from-source ./Formula/fragment-cli.rb
+          brew install --build-from-source Formula/fragment-cli.rb
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-prod.jsonc

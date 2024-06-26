@@ -5,15 +5,15 @@ class FragmentCliBeta < Formula
   homepage "https://fragment.dev"
   on_macos do
     url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v1.0.0-darwin-x64.tar.gz"
-    sha256 "152fe499d9e202422da97af10451c7348828033c3bb12129cf450540aa9990d1"
+    sha256 "c9629516b309cb84fd6f2336afa0519d022688a7052bbe6e0ecebd2c345a34fc"
     on_arm do
       url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v1.0.0-darwin-arm64.tar.gz"
-      sha256 "443250773dfc7a1ed47bb6c56711a03103726d5db54a4df973a1821c9d5a1554"
+      sha256 "ab4f170da3388f51516688b520ff1b734a7e52ab680d6f9a4eef7d3c8af0766c"
     end
   end
   on_linux do
     url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v1.0.0-linux-x64.tar.gz"
-    sha256 "ca0843fc30c867c0f095dbe5173eda84e9bc3031da1ae3ea958092eb4c2de60a"
+    sha256 "23723c5bb03f72e2f3031ecb8bbb90e6da059c6ac1266379e19e832e3204b9e4"
   end
   version "1.0.0"
   license "MIT"

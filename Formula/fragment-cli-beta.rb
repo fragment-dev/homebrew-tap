@@ -4,18 +4,18 @@ class FragmentCliBeta < Formula
   desc "Beta version of the FRAGMENT CLI"
   homepage "https://fragment.dev"
   on_macos do
-    url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5878.0.0-darwin-x64.tar.gz"
-    sha256 "b4f2cedceec2cb6a2d350baba093d8e0738fc13d3872f3fdd21e1ec99cbfa545"
+    url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5879.0.0-darwin-x64.tar.gz"
+    sha256 "c24485fbcf082c6266a43bf309eeda91868e66f9508243c39b171d93b3fddf54"
     on_arm do
-      url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5878.0.0-darwin-arm64.tar.gz"
-      sha256 "525455e1f0c42cdddb60a9ba2d81285f8566f2388d8fcb8317eb1661cb70329b"
+      url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5879.0.0-darwin-arm64.tar.gz"
+      sha256 "ec0e24a6e53fe9f45ac1089f4d8ae1887fc70775a4800d3475223f09beaab954"
     end
   end
   on_linux do
-    url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5878.0.0-linux-x64.tar.gz"
-    sha256 "0a7e7e8d47e36885dcc2ae8109a420d09dd3cbbeeb81f85299765cb119f62c5d"
+    url "https://dev-fragment-cli-bucket.s3.amazonaws.com/fragment-cli-v5879.0.0-linux-x64.tar.gz"
+    sha256 "27ffed8621a96ed62574f961028e570d8dc0f9e38539e91207fc5dcfd9d1c24f"
   end
-  version "5878.0.0"
+  version "5879.0.0"
   license "MIT"
   depends_on "node@20"
 

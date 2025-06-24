@@ -9,9 +9,9 @@
     "update-fragment-cli-version": "esr src/update-cli.ts"
   },
   "dependencies": {
-    "@caporal/core": "^2.0.2",
+    "@caporal/core": "^2.0.7",
     "handlebars": "^4.7.7",
-    "octokit": "^2.0.10",
+    "octokit": "^3.2.2",
     "tmp": "^0.2.1"
   },
   "packageManager": "yarn@3.2.1",

@@ -15,6 +15,9 @@
     "tmp": "^0.2.1"
   },
   "packageManager": "yarn@3.2.1",
+  "resolutions": {
+    "brace-expansion": "1.1.12"
+  },
   "devDependencies": {
     "@types/tmp": "^0.2.3",
     "esbuild": "^0.15.13",

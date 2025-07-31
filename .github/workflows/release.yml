@@ -1,6 +1,6 @@
 name: Homebrew Release
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 on:
   repository_dispatch:

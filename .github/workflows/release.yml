@@ -48,20 +48,20 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Update CLI
-        run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage }} --cli-version ${{ github.event.client_payload.version }}
+        run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage || inputs.stage }} --cli-version ${{ github.event.client_payload.version || inputs.version }}
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
-        if: ${{ github.event.client_payload.stage == 'dev' }}
+        if: ${{ github.event.client_payload.stage == 'dev' || inputs.stage == 'dev' }}
         run: |
           brew install --build-from-source Formula/fragment-cli-beta.rb
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-dev.jsonc
       - name: Brew Install Fragment CLI Prod on ${{ matrix.os }}
-        if: ${{ github.event.client_payload.stage == 'prod' }}
+        if: ${{ github.event.client_payload.stage == 'prod' || inputs.stage == 'prod' }}
         run: |
           brew install --build-from-source Formula/fragment-cli.rb
           echo "Fragment CLI installed"

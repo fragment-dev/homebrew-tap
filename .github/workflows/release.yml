@@ -66,6 +66,7 @@ jobs:
       - name: Register this repository as a Homebrew tap
         run: |
           brew untap fragment-dev/tap || true
+          rm -rf /opt/homebrew/Library/Taps/fragment-dev/homebrew-tap || true
           brew tap fragment-dev/tap "$GITHUB_WORKSPACE"
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'dev' || inputs.stage == 'dev' }}

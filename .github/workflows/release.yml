@@ -66,8 +66,8 @@ jobs:
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'dev' || inputs.stage == 'dev' }}
         run: |
-
-          brew install --build-from-source home/runner/work/homebrew-tap/homebrew-tap/Formula/fragment-cli-beta.rb
+          brew tap ./Formula/fragment-cli-beta.rb
+          brew install --build-from-source ./Formula/fragment-cli-beta.rb
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-dev.jsonc

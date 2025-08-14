@@ -7,6 +7,18 @@ on:
     types:
       - webhook
   workflow_dispatch:
+    inputs:
+      stage:
+        type: choice
+        description: The stage to release to
+        options:
+          - dev
+          - prod
+      version:
+        type: string
+        description: The version to release
+        default: "latest"
+
 jobs:
   release-cli:
     name: Release CLI

@@ -63,22 +63,24 @@ jobs:
         run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage || inputs.stage }} --cli-version ${{ github.event.client_payload.version || inputs.version }}
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Register this repository as a Homebrew tap
+        run: |
+          brew untap fragment-dev/tap || true
+          brew tap fragment-dev/tap "$GITHUB_WORKSPACE"
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'dev' || inputs.stage == 'dev' }}
         run: |
-          brew tap ./Formula/fragment-cli-beta.rb
-          brew install --build-from-source ./Formula/fragment-cli-beta.rb
+          brew install --build-from-source fragment-dev/tap/fragment-cli-beta
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-dev.jsonc
       - name: Brew Install Fragment CLI Prod on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'prod' || inputs.stage == 'prod' }}
         run: |
-          brew install --build-from-source Formula/fragment-cli.rb
+          brew install --build-from-source fragment-dev/tap/fragment-cli
           echo "Fragment CLI installed"
           fragment --version
           fragment init -f ${{ github.run_id }}-prod.jsonc
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # This is just so it doesn't try to push twice. The alternative is to create another workflow which will

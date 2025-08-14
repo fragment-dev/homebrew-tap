@@ -50,6 +50,8 @@ jobs:
         run: yarn update-fragment-cli-version --stage ${{ github.event.client_payload.stage }} --cli-version ${{ github.event.client_payload.version }}
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
       - name: Brew Install Fragment CLI Beta on ${{ matrix.os }}
         if: ${{ github.event.client_payload.stage == 'dev' }}
         run: |

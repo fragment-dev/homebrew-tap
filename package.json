@@ -12,11 +12,12 @@
     "@caporal/core": "^2.0.7",
     "handlebars": "^4.7.7",
     "octokit": "^3.2.2",
-    "tmp": "^0.2.1"
+    "tmp": "^0.2.4"
   },
   "packageManager": "yarn@3.2.1",
   "resolutions": {
-    "brace-expansion": "1.1.12"
+    "brace-expansion": "1.1.12",
+    "lodash": "4.17.23"
   },
   "devDependencies": {
     "@types/tmp": "^0.2.3",

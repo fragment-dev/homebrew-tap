@@ -22,6 +22,10 @@ class FragmentCli < Formula
   def install
     inreplace "bin/fragment", /^CLIENT_HOME=/, "export FRAGMENT_CLIENT_HOME=#{lib/"client"}\nCLIENT_HOME="
     libexec.install Dir["*"]
+    # The tarball ships without a Node runtime; point the launcher's
+    # $DIR/node lookup at Homebrew's keg-only node@20.
+    rm_f libexec/"bin/node"
+    (libexec/"bin").install_symlink Formula["node@20"].opt_bin/"node" => "node"
     bin.install_symlink libexec/"bin/fragment"
   end
 

@@ -577,13 +577,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brace-expansion@npm:1.1.12":
-  version: 1.1.12
-  resolution: "brace-expansion@npm:1.1.12"
+"brace-expansion@npm:1.1.16":
+  version: 1.1.16
+  resolution: "brace-expansion@npm:1.1.16"
   dependencies:
     balanced-match: ^1.0.0
     concat-map: 0.0.1
-  checksum: 12cb6d6310629e3048cadb003e1aca4d8c9bb5c67c3c321bafdd7e7a50155de081f78ea3e0ed92ecc75a9015e784f301efc8132383132f4f7904ad1ac529c562
+  checksum: 11ab2d5b39d61bc0d0de9240a5d08a5f210a5650885ca4876271ef5996b4c5d172d697b501d673fe099ab721aa8bf0348507ad23a6148e169856209d2f9cab94
   languageName: node
   linkType: hard
 
@@ -1133,7 +1133,7 @@ __metadata:
     esbuild-runner: ^2.2.2
     handlebars: ^4.7.9
     octokit: ^3.2.2
-    tmp: ^0.2.6
+    tmp: ^0.2.7
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -1716,10 +1716,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tmp@npm:0.2.6":
-  version: 0.2.6
-  resolution: "tmp@npm:0.2.6"
-  checksum: 9e6255b922ab8c6e70b3271e246a14a2f0ad844e951642b34a28bb533d37fbc74f043c7112bceb72be96eded4644a3f3dc67d1934e8593f6a0cb050ffc13e64a
+"tmp@npm:0.2.7":
+  version: 0.2.7
+  resolution: "tmp@npm:0.2.7"
+  checksum: 45dec2fc288ad368eeff7268cb6d5d33452c6d35f4f7d9b1b5e023409a141dab57a3c08b5f505daf3af6d69667a5f544fc1a5b6a27c6f9396a5a1b4002912f1c
   languageName: node
   linkType: hard
 

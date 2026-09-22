@@ -16,9 +16,9 @@
   },
   "packageManager": "yarn@3.2.1",
   "resolutions": {
-    "brace-expansion": "1.1.12",
+    "brace-expansion": "1.1.21",
     "lodash": "4.17.23",
-    "tmp": "0.2.6"
+    "tmp": "0.2.7"
   },
   "devDependencies": {
     "@types/tmp": "^0.2.3",
